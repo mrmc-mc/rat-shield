@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+	<meta content="" name="" />
+	<meta content="" name="" />
+	<!-- App favicon -->
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <!--Extra Css-->
+
+    {% block extra_css %}{% endblock extra_css %}
+	<!-- Bootstrap Css -->
+	<link href="{% static 'css/bootstrap-dark.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+	<!-- Icons Css -->
+	<link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+	<!-- Converter form Style -->
+	{% comment %} <link href="{% static 'css/converter-form-style.css' %}" rel="stylesheet" type="text/css" /> {% endcomment %}
+	<link href="{% static 'libs/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+	<!-- App Css-->
+	<link href="{% static 'css/app-dark.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+	<!-- Custom Style -->  
+	<link href="{% static 'css/custom/custstyle.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+
+
+	<link href="{% static 'libs/toastr/build/toastr.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body  data-sidebar="dark" data-keep-enlarged="true">
+	
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="main-content m-0">
+			<div class="page-content">
+				<div class="container-fluid">
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box d-sm-flex align-items-center justify-content-between">
+								<h4 class="mb-sm-0">{{title}}</h4>
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a href="javascript: void(0);">{{pageview}}</a>
+										</li>
+										<li class="breadcrumb-item active">{{title}}</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->{% block content %}{% endblock content %}</div>
+			</div>
+			<!-- End Page-content -->
+            </div>
+		<!-- end main content-->
+	</div>
+	<!-- END layout-wrapper -->
+
+    {% comment  %} right-Sidebar content - Icon in header.html {% endcomment %}
+    {% comment %} {% include 'partials/right-sidebar.html' %} {% endcomment %}
+
+	<!-- JAVASCRIPT -->
+
+	<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+	<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+	<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+	<script src="{% static 'libs/select2/js/select2.min.js' %}"></script>
+	<script src="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+	<script src="{% static 'libs/toastr/build/toastr.min.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+    <!--Extra Javascript-->
+    {% block extra_javascript %}{% endblock extra_javascript %}
+        <script>
+	function formatText (icon) {
+                return $('<span><img style="max-width:40px;max-height:40px;" src="{% static "images/coins/" %}' + $(icon.element).data('icon') + '">&nbsp' + icon.text + '</span>');
+		};
+
+        $('.select2-icon').select2({
+                width: "100%",
+                templateSelection: formatText,
+                templateResult: formatText
+        });
+        </script>
+
+	<script type="text/javascript">
+	toastr.options = {
+	"closeButton": true,
+	"debug": false,
+	"newestOnTop": true,
+	"progressBar": true,
+	"positionClass": "toast-top-center",
+	"preventDuplicates": true,
+	"onclick": null,
+	"showDuration": 300,
+	"hideDuration": 1000,
+	"timeOut": 5000,
+	"extendedTimeOut": 1000,
+	"showEasing": "swing",
+	"hideEasing": "linear",
+	"showMethod": "fadeIn",
+	"hideMethod": "fadeOut"
+	}
+
+
+	{% for message in messages %}
+	toastr["{{message.tags}}"]("{{message}}")
+	{% endfor %}
+
+	</script>
+	<!-- App js -->
+	<script src="{% static 'js/app.js' %}"></script>
+	{% comment %} <script src="{% static 'js/converter-form-script.js' %}"></script> {% endcomment %}
+
+</body>
+
+</html>

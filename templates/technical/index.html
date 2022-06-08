@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+	<!-- jquery.vectormap css -->
+	<link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css" />
+	<!-- DataTables -->
+	<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+	<!-- Responsive datatable examples -->
+	<link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %} 
+
+{% block content %} 
+
+<div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+                <div class="card">
+                        <div class="card-body text-center">
+                                <h4 class="card-title">Tradingview Summray</h4>
+                                <p class="card-title-desc"> Tradingview Summray Technical Table</p>
+                                <div>{% now "jS F Y H:i" %}</div>
+                                <div class="row">
+                                        <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57
+                                                        entries</div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-7">
+                                                <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                                                        <ul class="pagination pagination-rounded">
+                                                                {%if msg.has_previous %}
+                                                                <li class="paginate_button page-item previous" id="datatable_previous"><a
+                                                                                href="?page={{msg.previous_page_number}}" aria-controls="datatable" data-dt-idx="0" tabindex="0"
+                                                                                class="page-link">previous</a></li>
+                                                                {% endif %}
+                                                                <li class="paginate_button page-item active"><a href="#" aria-controls="datatable"
+                                                                                data-dt-idx="1" tabindex="0" class="page-link">{{msg.number}}</a></li>
+                                                                {%if msg.has_next %} 
+                                                                <li class="paginate_button page-item "><a href="?page={{msg.next_page_number}}" aria-controls="datatable"
+                                                                                data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                                                                {% endif %}
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="table-responsive font-size-12">
+                                        <table class="table mb-0">
+
+                                                <thead>
+                                                        <tr>
+                                                                <th>COIN</th>
+                                                                <th>1 hour</th>
+                                                                <th>2 hour</th>
+                                                                <th>4 hour</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        {% for i in msg.object_list  %}
+                                                        <tr>
+                                                                <th scope="row">{{i.id}}</th>
+                                                                
+                                                                <td>{{i.data}}</td>
+                                                               
+                                                                <td>{{i.time}}</td>
+                                                                
+                                                                <td><div class="led-{{ada4.RECOMMENDATION}}"></div></td>
+                                                                
+                                                        </tr>
+                                                        {% endfor %}
+                                                </tbody>
+                                        </table>
+                                            
+                                </div>
+
+                        </div>
+                </div>
+        </div>
+        <div class="col-lg-2"></div>
+</div>
+<div class="row">
+        <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57
+                        entries</div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                        <ul class="pagination pagination-rounded">
+                                {%if msg.has_previous %}
+                                <li class="paginate_button page-item previous" id="datatable_previous"><a
+                                                href="?page={{msg.previous_page_number}}" aria-controls="datatable" data-dt-idx="0" tabindex="0"
+                                                class="page-link">previous</a></li>
+                                {% endif %}
+                                <li class="paginate_button page-item active"><a href="#" aria-controls="datatable"
+                                                data-dt-idx="1" tabindex="0" class="page-link">{{msg.number}}</a></li>
+                                {%if msg.has_next %} 
+                                <li class="paginate_button page-item "><a href="?page={{msg.next_page_number}}" aria-controls="datatable"
+                                                data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                                {% endif %}
+                        </ul>
+                </div>
+        </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_javascript %}
+   <!-- apexcharts -->
+    {% comment %} <script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script> {% endcomment %}
+
+    <!-- jquery.vectormap map -->
+    <script src="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js' %}"></script>
+
+    <!-- apexcharts -->
+    <script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
+
+    <!-- Required datatable js -->
+    <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    
+    <!-- Responsive examples -->
+    <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/pages/dashboard.init.js' %}"></script>
+
+{% endblock extra_javascript %}

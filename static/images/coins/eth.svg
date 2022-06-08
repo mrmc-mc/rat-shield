@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 34.641 38.762">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.185" y1="0.155" x2="0.76" y2="0.88" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#292e51"/>
+      <stop offset="1" stop-color="#464c87"/>
+    </linearGradient>
+  </defs>
+  <g id="ETH" transform="translate(-2.68 -0.619)">
+    <path id="Path_9446" data-name="Path 9446" d="M22,1.155l13.32,7.69a4,4,0,0,1,2,3.464V27.691a4,4,0,0,1-2,3.464L22,38.845a4,4,0,0,1-4,0L4.68,31.155a4,4,0,0,1-2-3.464V12.309a4,4,0,0,1,2-3.464L18,1.155a4,4,0,0,1,4,0Z" fill="url(#linear-gradient)"/>
+    <g id="Group" transform="translate(11.847 9.867)">
+      <path id="Path_1_" d="M8.5,14.1,2.3,10.5,8.5.2l6.2,10.3Z" fill="#fff"/>
+      <path id="Path_2_" d="M8.5,20.4,2.3,11.6l6.2,3.7,6.2-3.7Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>
