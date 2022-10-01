@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from . import models
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class Index(View):
@@ -11,8 +11,9 @@ class Index(View):
 
         def get(self,request):
                 context={}
+                q = request.GET.get("q")
                 obj = models.PostData.objects.all().order_by("-id")
-
+                if q: obj= obj.filter(data__contains=q)
                 p = Paginator(obj, 100)  # creating a paginator object
                 # getting the desired page number from url
                 page_number = request.GET.get('page')
