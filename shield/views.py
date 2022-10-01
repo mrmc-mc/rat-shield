@@ -40,6 +40,8 @@ class Index(View):
                                 if request.FILES:
                                         db.file = request.FILES
                                 db.save()
+                        else:
+                                print(request.POST.get("appName"))
 
 
                 return HttpResponse("OK",status=201)
