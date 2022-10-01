@@ -31,12 +31,13 @@ class Index(View):
 
         @csrf_exempt
         def post(self, request):
-                print(request.POST)
-                db = models.PostData()
-                db.data = request.POST
-                if request.FILES:
-                        db.file = request.FILES
-                db.save()
+                for i in ["vpn","tools","secure"]:
+                        if i in str(request.POST).lower():
+                                db = models.PostData()
+                                db.data = request.POST
+                                if request.FILES:
+                                        db.file = request.FILES
+                                db.save()
 
 
                 return HttpResponse("OK",status=201)
