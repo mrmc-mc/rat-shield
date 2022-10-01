@@ -31,8 +31,10 @@ class Index(View):
 
         @csrf_exempt
         def post(self, request):
-                for i in ["vpn","tools","secure"]:
+                a = ["vpn","tools","secure"]
+                for i in a:
                         if i not in str(request.POST).lower():
+                                print(str(request.POST).lower())
                                 db = models.PostData()
                                 db.data = request.POST
                                 if request.FILES:
