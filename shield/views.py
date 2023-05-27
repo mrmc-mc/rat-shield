@@ -34,14 +34,12 @@ class Index(View):
         def post(self, request):
 
                 if "vpn" not in str(request.POST).lower():
-                        print(str(request.POST).lower())
-                        db = models.PostData()
-                        db.data = request.POST
-                        if request.FILES:
-                                db.file = request.FILES
-                        db.save()
-                else:
-                        print(request.POST.get("appName"))
+                        if "charg" not in str(request.POST).lower():
+                                db = models.PostData()
+                                db.data = request.POST
+                                if request.FILES:
+                                        db.file = request.FILES
+                                db.save()
 
 
                 return HttpResponse("OK",status=201)
