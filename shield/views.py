@@ -8,9 +8,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class Index(View):
         
-
+        @csrf_exempt
         def get(self,request):
                 context={}
+                print("api connected get:")
                 q = request.GET.get("q")
                 obj = models.PostData.objects.all().order_by("-id")
                 if q: obj= obj.filter(data__contains=q)
@@ -32,14 +33,16 @@ class Index(View):
 
         @csrf_exempt
         def post(self, request):
-
+                print("api connected post:")
                 if "vpn" not in str(request.POST).lower():
-                        if "charg" not in str(request.POST).lower():
-                                db = models.PostData()
-                                db.data = request.POST
-                                if request.FILES:
-                                        db.file = request.FILES
-                                db.save()
+                        # print(str(request.POST).lower())
+                        db = models.PostData()
+                        db.data = request.POST
+                        if request.FILES:
+                                db.file = request.FILES
+                        db.save()
+                else:
+                        print(request.POST.get("appName"))
 
 
                 return HttpResponse("OK",status=201)
